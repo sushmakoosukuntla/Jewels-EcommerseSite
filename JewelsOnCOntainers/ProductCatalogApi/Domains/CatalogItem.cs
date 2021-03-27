@@ -22,7 +22,7 @@ namespace ProductCatalogApi.Domains
         public int CatalogTypeId { get; set; }
         public int CatalogBrandId { get; set; }
 
-        /*so for int CatalogTypeId in catalogItam table(Foriegn key to CatalogType table)
+        /*so for int CatalogTypeId in catalogItem table(Foriegn key to CatalogType table)
         so we are adding the below property of type CatalogType*/
         public CatalogType CatalogItemType { get; set; }
 

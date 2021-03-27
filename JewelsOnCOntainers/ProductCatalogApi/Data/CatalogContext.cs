@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductCatalogApi.Data
 {
+    //This class is my database class/ Entity framework class
     public class CatalogContext : DbContext
     //Entity framework will help us define how the interaction between the c# and the database work.
 
@@ -22,7 +23,7 @@ namespace ProductCatalogApi.Data
     //When the injection happens, We will get the instructions to the parameter "Options" 
     //and that parameter we have to pass to base class.
     { 
-        //In below line where part is injected
+        //In below line "where" part is injected
         public CatalogContext(DbContextOptions options) : base(options)
         {
 
@@ -71,6 +72,17 @@ namespace ProductCatalogApi.Data
                 e.Property(i => i.Id).IsRequired().ValueGeneratedOnAdd();
                 e.Property(i => i.Name).IsRequired().HasMaxLength(100);
                 e.Property(i => i.Price).IsRequired();
+                //databased comes with three kinds of relationships. 
+                //1. one to one relationship
+                //2. one to many or many to one(one catalogType can have many CatalogItems )
+                //3. mamy to many
+                //so below, we are defining one to many relationship
+                //so from catalogItem We wanna tie up to CatalogTypeTable through the catalogTypeId
+
+                //The catalogItem has one relationship with catalogType and which inturn has many
+                //and has a forign key is CatalogTypeId
+                e.HasOne(i => i.CatalogItemType).WithMany().HasForeignKey(i => i.CatalogTypeId);
+                e.HasOne(i => i.CatalogItemBrand).WithMany().HasForeignKey(i => i.CatalogBrandId);
             });
         }
 
