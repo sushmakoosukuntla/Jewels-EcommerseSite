@@ -15,8 +15,16 @@ namespace ProductCatalogApi.Data
         //We are now telling, what should be seeded in to tables when they are created
         //I want this class to seed CatalogContext database
         //when somebody is gonna call this below Seed method they are gonna tell me where the database is.
+        
         public static void Seed(CatalogContext catalogContext)
         {
+            /*In order to migrate, Entityframe work requires the translated version of catalog context, To do that
+            View => otherwindows => Package Manager console, this is powershell window whhere we can run powershell
+            commands nothing but c# commands.*/
+            //Then type Add-Migration Initial(For Initial migration)
+            //What does Migrate do?? If we dont migrate, the tables will not get created in the database.
+            catalogContext.Database.Migrate();
+
             //we are checking whether the database is created or not in the below line.
             //catalogContext.Database.EnsureCreated();
             //Below Line checks the database, if it has any rows

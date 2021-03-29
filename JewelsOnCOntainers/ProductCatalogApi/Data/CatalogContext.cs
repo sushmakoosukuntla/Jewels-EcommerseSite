@@ -24,6 +24,7 @@ namespace ProductCatalogApi.Data
     //and that parameter we have to pass to base class.
     { 
         //In below line "where" part is injected
+        //We will inject the options in startup.cs file. where the compile start.
         public CatalogContext(DbContextOptions options) : base(options)
         {
 
@@ -80,7 +81,7 @@ namespace ProductCatalogApi.Data
                 //so from catalogItem We wanna tie up to CatalogTypeTable through the catalogTypeId
 
                 //The catalogItem has one relationship with catalogType and which inturn has many
-                //and has a forign key is CatalogTypeId
+                //and has a forign key CatalogTypeId
                 e.HasOne(i => i.CatalogItemType).WithMany().HasForeignKey(i => i.CatalogTypeId);
                 e.HasOne(i => i.CatalogItemBrand).WithMany().HasForeignKey(i => i.CatalogBrandId);
             });
