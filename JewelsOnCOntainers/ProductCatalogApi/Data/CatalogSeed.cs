@@ -23,7 +23,7 @@ namespace ProductCatalogApi.Data
             commands nothing but c# commands.*/
             //Then type Add-Migration Initial(For Initial migration)
             //What does Migrate do?? If we dont migrate, the tables will not get created in the database.
-            catalogContext.Database.Migrate();
+            catalogContext.Database.Migrate(); //this will call the Migration folder
 
             //we are checking whether the database is created or not in the below line.
             //catalogContext.Database.EnsureCreated();
@@ -56,6 +56,10 @@ namespace ProductCatalogApi.Data
         {
             return new List<CatalogItem>()
             {
+                /*The reason why we didnt directly keep the picture Url is, when the user opens the website
+                 it calls all our catalogItems, In DB one of the column is picture URL. If we give the direct path
+                ,It will try to search in the server, which will eventually fail. (The pictures are located in this 
+                local server)*/
                 new CatalogItem { CatalogTypeId = 2, CatalogBrandId = 3, Description = "A ring that has been around for over 100 years", Name = "World Star", Price = 199.5f, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/1" },
                 new CatalogItem { CatalogTypeId = 1, CatalogBrandId = 2, Description = "will make you world champions", Name = "White Line", Price = 88.50f, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/2" },
                 new CatalogItem { CatalogTypeId = 2, CatalogBrandId = 3, Description = "You have already won gold medal", Name = "Prism White", Price = 129, PictureUrl = "http://externalcatalogbaseurltobereplaced/api/pic/3" },
