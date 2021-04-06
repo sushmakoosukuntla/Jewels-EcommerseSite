@@ -45,12 +45,16 @@ namespace ProductCatalogApi.Controllers
             return items;
         }
 
+
+        [HttpGet("[action]")]
         public async Task<IActionResult> CatalogTypes()
         {
             var types = await _context.CatalogTypes.ToListAsync();
             return Ok(types);
         }
 
+
+        [HttpGet("[action]")]
         public async Task<IActionResult> CatalogBrands()
         {
             var types = await _context.CatalogBrands.ToListAsync();
