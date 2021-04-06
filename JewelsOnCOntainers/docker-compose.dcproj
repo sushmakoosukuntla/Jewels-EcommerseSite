@@ -6,7 +6,7 @@
     <ProjectGuid>0a04b6c6-0593-48cc-8a13-f4423383b555</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/weatherforecast</DockerServiceUrl>
-    <DockerServiceName>productcatalogapi</DockerServiceName>
+    <DockerServiceName>catalog</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.yml" />
