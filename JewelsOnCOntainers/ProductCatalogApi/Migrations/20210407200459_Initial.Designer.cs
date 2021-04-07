@@ -9,7 +9,7 @@ using ProductCatalogApi.Data;
 namespace ProductCatalogApi.Migrations
 {
     [DbContext(typeof(CatalogContext))]
-    [Migration("20210329230427_Initial")]
+    [Migration("20210407200459_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

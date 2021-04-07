@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ProductCatalogApi.Data;
 using ProductCatalogApi.Domains;
+using ProductCatalogApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +32,18 @@ namespace ProductCatalogApi.Controllers
         [HttpGet("[action]")]//action is nothing but another name for method.
         public async Task<IActionResult> Items([FromQuery]int pageIndex=0, [FromQuery]int pageSize = 6)
         {
+            var itemsCount = _context.Catalog.LongCountAsync();
             //Anytime we need to query the database table, we need to do it through Entity framework.
             var items = await _context.Catalog.OrderBy(c => c.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
             items = ChangePictureUrl(items);
-            return Ok(items);
+            var model = new PaginatedItemsViewModel<CatalogItem>
+            {
+                PageIndex = pageIndex,
+                PageSize = items.Count,
+                Count = itemsCount.Result,
+                Data = items
+            };
+            return Ok(model);
         }
 
         private List<CatalogItem> ChangePictureUrl(List<CatalogItem> items)
