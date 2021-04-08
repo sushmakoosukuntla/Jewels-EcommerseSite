@@ -11,13 +11,13 @@ services:
       context: .\ProductCatalogApi
       dockerfile: Dockerfile
     environment:
-      ExternalCatalogBaseUrl: http://localhost:7810
+      ExternalCatalogBaseUrl: http://localhost:7813
       DatabaseServer: mssqlserver
       DatabaseName: CatalogDb
       DatabaseUser: sa
       DatabasePassword: ProductApi(!)
     ports:
-      - "7810:80"
+      - "7813:80"
     container_name: jewelscatalogapi
     networks:
       - frontend
